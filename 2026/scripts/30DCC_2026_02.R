@@ -9,6 +9,11 @@
 library(tidyverse)
 library(ggpop)
 library(patchwork)
+library(sysfonts)
+font_add_google("Roboto")
+font_add_google("Ubuntu")
+font_add_google("Open Sans")
+showtext::showtext_auto()
 
 # 📄 Data ----
 
