@@ -68,7 +68,7 @@ p <- ggplot() +
                                "Adelie" = "darkorange")) +
   labs(title = "Palmer penguins",
        subtitle = "Proportion of each species per island",
-       caption = "30DayChartChallenge 2026 | Comparisons | Day 03 - Mosaic | Source: {palmerpenguins") +
+       caption = "30DayChartChallenge 2026 | Comparisons | Day 03 - Mosaic | Source: {palmerpenguins}") +
   theme_void() +
   theme(panel.background = element_rect(fill = "#4c5265"),
         plot.background = element_rect(fill = "#4c5265"),
