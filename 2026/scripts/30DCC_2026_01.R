@@ -7,10 +7,11 @@
 # 📦 Packages ----
 
 library(tidyverse)
-library(khroma)
-# library(ggthemes)
-# library(tidyplots)
-theme_set(theme_bw())
+library(sysfonts)
+font_add_google("Roboto")
+font_add_google("Ubuntu")
+font_add_google("Open Sans")
+showtext::showtext_auto()
 
 # 📄 Data ----
 
@@ -67,7 +68,7 @@ p <- ggplot() +
                linewidth = 0.3) +
   geom_text(data = elec_labels,
             aes(x = 1.76, y = seg_end_y, label = label),
-            hjust = 0) +
+            hjust = 0, family = "Open Sans", size = 10) +
   scale_x_continuous(limits = c(0.5, 2)) +
   labs(title = "Electricity mix",
        subtitle = "Worldwide - 2025",
@@ -75,9 +76,9 @@ p <- ggplot() +
   theme_void() +
   theme(panel.background = element_rect(fill = "white"),
         plot.background = element_rect(fill = "white"),
-        plot.title = element_text(face = "bold", size = 15, hjust = 0.5, margin = margin(t = 15)),
-        plot.subtitle = element_text(size = 15, hjust = 0.5),
-        plot.caption = element_text(size = 10, hjust = 0.5, margin = margin(b = 15)))
+        plot.title = element_text(family = "Open Sans", face = "bold", size = 40, hjust = 0.5, margin = margin(t = 15)),
+        plot.subtitle = element_text(family = "Open Sans", size = 35, hjust = 0.5),
+        plot.caption = element_text(family = "Open Sans", size = 30, hjust = 0.5, margin = margin(b = 15)))
 
 ggsave("2026/figs/30DCC_2026_01.png", p, dpi = 320, width = 12, height = 6)
 
