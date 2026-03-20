@@ -3,3 +3,37 @@
 # Comparisons
 # Day 05
 # Experimental
+
+# 📦 Packages ----
+
+library(tidyverse)
+library(ggvoronoi)
+library(sysfonts)
+font_add_google("Roboto")
+font_add_google("Ubuntu")
+font_add_google("Open Sans")
+showtext::showtext_auto()
+
+# 📄 Data ----
+
+
+set.seed(42)
+
+x <- sample(1:400, size = 100)
+y <- sample(1:400, size = 100)
+
+df <- tibble(
+  x = x,
+  y = y
+) |> 
+  mutate(
+    dist_euclidian = sqrt((x - 200) ^ 2 + (y - 200) ^ 2),
+    dist_manhattan = abs(x - 200) + abs(y - 200),
+    dist_tchebychev = max(abs(x - 200), abs(y - 200))
+  )
+
+
+# 📊 Plot ----
+
+p1 <- ggplot(df, aes(x, y)) +
+  stat_voronoi(geo)
