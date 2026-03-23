@@ -4,14 +4,29 @@
 # Day 03
 # Mosaic
 
+# https://gogonzo.github.io/marimekko/articles/getting-started.html
+
 # 📦 Packages ----
 
 library(tidyverse)
-library(ggmosaic)
+# library(ggmosaic)
+library(marimekko)
 library(palmerpenguins)
 library(sysfonts)
 font_add_google("Open Sans")
 showtext::showtext_auto()
+
+# Testing {marimekko} ----
+
+ggplot(penguins) +
+  geom_marimekko(aes(fill = factor(species)),
+                 formula = ~ island | species) +
+  geom_marimekko_text(aes(label = after_stat(paste0(round(cond_prop * 100), "%"))),
+                      family = "Open Sans", size = 3) +
+  scale_fill_manual(values = c("Adelie" = "darkorange",
+                               "Chinstrap" = "purple",
+                               "Gentoo" = "cyan4"))
+
 
 # 📄 Data ----
 

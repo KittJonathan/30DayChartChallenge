@@ -7,7 +7,6 @@
 # 📦 Packages ----
 
 library(tidyverse)
-library(ggvoronoi)
 library(sysfonts)
 font_add_google("Roboto")
 font_add_google("Ubuntu")
@@ -16,8 +15,12 @@ showtext::showtext_auto()
 
 # 📄 Data ----
 
-
+# Simulate rolling 2 dice
 set.seed(42)
+die1 <- sample(x = 1:6, size = 9000, replace = TRUE)
+die2 <- sample(x = 1:6, size = 9000, replace = TRUE)
+dice <- die1 + die2
+
 
 x <- sample(1:400, size = 100)
 y <- sample(1:400, size = 100)
@@ -36,4 +39,4 @@ df <- tibble(
 # 📊 Plot ----
 
 p1 <- ggplot(df, aes(x, y)) +
-  stat_voronoi(geo)
+  stat_voronoi()
