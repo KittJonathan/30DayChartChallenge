@@ -9,7 +9,6 @@
 # 📦 Packages ----
 
 library(tidyverse)
-# library(ggmosaic)
 library(marimekko)
 library(palmerpenguins)
 library(sysfonts)
@@ -18,15 +17,33 @@ showtext::showtext_auto()
 
 # Testing {marimekko} ----
 
-ggplot(penguins) +
+p <- ggplot(penguins) +
   geom_marimekko(aes(fill = factor(species)),
                  formula = ~ island | species) +
   geom_marimekko_text(aes(label = after_stat(paste0(round(cond_prop * 100), "%"))),
-                      family = "Open Sans", size = 3) +
+                      family = "Open Sans", size = 16) +
   scale_fill_manual(values = c("Adelie" = "darkorange",
                                "Chinstrap" = "purple",
-                               "Gentoo" = "cyan4"))
+                               "Gentoo" = "cyan4")) +
+  labs(fill = "", 
+       title = "Palmer penguins",
+       subtitle = "Proportion of each species per island",
+       caption = "30DayChartChallenge 2026 | Comparisons | Day 03 - Mosaic | Source: {palmerpenguins}") +
+  theme_minimal() +
+  theme(axis.title = element_blank(),
+        axis.text.x = element_text(family = "Open Sans", size = 30, color = "white"),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "top",
+        legend.text = element_text(family = "Open Sans", colour = "white", size = 30),
+        panel.background = element_rect(fill = "#4c5265", color = "#4c5265"),
+        panel.grid = element_blank(),
+        plot.background = element_rect(fill = "#4c5265", color = "#4c5265"),
+        plot.title = element_text(family = "Open Sans", face = "bold", color = "white", size = 40, hjust = 0.5, margin = margin(t = 15, b = 10)),
+        plot.subtitle = element_text(family = "Open Sans", color = "white", size = 35, hjust = 0.5, margin = margin(b = 20)),
+        plot.caption = element_text(family = "Open Sans", color = "white", size = 20, hjust = 0.5, margin = margin(t = 25, b = 15)))
 
+ggsave("2026/figs/30DCC_2026_03.png", p, dpi = 320, width = 12, height = 6)
 
 # 📄 Data ----
 
@@ -91,5 +108,5 @@ p <- ggplot() +
         plot.subtitle = element_text(family = "Open Sans", color = "white", size = 35, hjust = 0.5),
         plot.caption = element_text(family = "Open Sans", color = "white", size = 30, hjust = 0.5, margin = margin(t = 15, b = 15)))
 
-ggsave("2026/figs/30DCC_2026_03.png", p, dpi = 320, width = 12, height = 6) 
+ 
 
