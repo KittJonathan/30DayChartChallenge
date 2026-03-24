@@ -18,7 +18,7 @@ library(ggfx)
 
 stack(prop.table(table(do.call("+", expand.grid(rep(list(1:6), 2))))))
 
-n_dice <- 4
+n_dice <- 2
 n_rolls <- 10000
 seed <- 42
 
@@ -62,7 +62,7 @@ plot_rolls <- function(n_dice, n_rolls, seed = 42) {
              fill = "#ebdaf2") +
     with_outer_glow(
       geom_line(aes(x = dice_total, y = prob_theo, group = 1),
-                color = "#b7a3d9", linewidth = 2),
+                color = "white", linewidth = 2),
       color = "#b7a3d9", sigma = 2
     ) +
     labs(x = "Sum of dice", y = "Probability",
@@ -80,7 +80,7 @@ plot_rolls <- function(n_dice, n_rolls, seed = 42) {
   
 }
 
-plot_rolls(n_dice = 4, n_rolls = 10000000, seed = 42)
+plot_rolls(n_dice = 10, n_rolls = 100, seed = 42)
 
 # 📊 Plot ----
 
