@@ -3,3 +3,9 @@
 # Timeseries
 # Day 23
 # Seasons
+
+# 📦 Packages ----
+
+# 📄 Data ----
+
+# 📊 Plot ----

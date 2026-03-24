@@ -16,12 +16,6 @@ library(ggfx)
 
 # ⚒️ Function ----
 
-stack(prop.table(table(do.call("+", expand.grid(rep(list(1:6), 2))))))
-
-n_dice <- 2
-n_rolls <- 10000
-seed <- 42
-
 plot_rolls <- function(n_dice, n_rolls, seed = 42) {
   
   dice_theo <- tibble(
@@ -80,50 +74,8 @@ plot_rolls <- function(n_dice, n_rolls, seed = 42) {
   
 }
 
-plot_rolls(n_dice = 10, n_rolls = 100, seed = 42)
-
 # 📊 Plot ----
 
-ggplot(dice_res) +
-  geom_col(aes(x = dice_total, y = prop_obs)) +
-  geom_line(aes(x = dice_total, y = prob_theo, group = 1)) +
-  geom_point(aes(x = dice_total, y = prob_theo))
+p <- plot_rolls(n_dice = 5, n_rolls = 10000, seed = 42)
 
-# 📄 Data ----
-
-# 100 throws of 2 dice
-res_100throws_2dice <- sim_roll(n_dice = 2, n_rolls = 100)
-
-# 100 throws of 5 dice
-res_100throws_5dice <- sim_roll(n_dice = 5, n_rolls = 100)
-
-# 10000 throws of 5 dice
-res_10000throws_5dice <- sim_roll(n_dice = 5, n_rolls = 10000)
-
-# 1000 throws of 2 dice
-res_1000throws_2dice <- sim_roll(n_dice = 2, n_rolls = 1000)
-
-# 10000 throws of 2 dice
-res_10000throws_2dice <- sim_roll(n_dice = 2, n_rolls = 10000)
-
-ggplot(res_100throws_2dice, aes(x = dice_total, y = n)) + geom_col()
-ggplot(res_100throws_5dice, aes(x = dice_total, y = n)) + geom_col()
-ggplot(res_10000throws_5dice, aes(x = dice_total, y = n)) + geom_col()
-
-
-
-dice <- tibble(
-  die1 = sim_res[[1]],
-  die2 = sim_res[[2]],
-  die3 = sim_res[[3]],
-  die4 = sim_res[[4]],
-  die5 = sim_res[[5]]
-)
-
-tbl_res <- dice |> 
-  mutate(total = die1 + die2 + die3 + die4 + die5) |> 
-  pull(total)
-
-list_res <- Reduce("+", sim_res)
-
-# 📊 Plot ----
+ggsave("2026/figs/30DCC_2026_05.png", p, dpi = 320, width = 12, height = 6)
