@@ -9,12 +9,22 @@
 # 📦 Packages ----
 
 library(tidyverse)
+library(r2country)
 
 # 📄 Data ----
 
-age <- read_tsv("2026/data/anage_data.txt")
+gdp <- read_csv("2026/data/gdp-worldbank-constant-usd.csv") |> 
+  janitor::clean_names() |> 
+  rename(name = entity)
 
-age |> 
-  filter(`Data quality` == "high")
+data("country_continent")
+data("country_names")
+
+countries <- left_join(country_names, country_continent) |> 
+  select(-ID)
+
+countries |> 
+  left_join(gdp) |> 
+  filter(is.na(gdp))
 
 # 📊 Plot ----
