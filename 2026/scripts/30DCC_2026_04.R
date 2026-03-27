@@ -7,9 +7,44 @@
 # 📦 Packages ----
 
 library(tidyverse)
-library(sysfonts)
+library(palmerpenguins)
+# library(marimekko)
+library(showtext)
+# library(ggtext)
+
+# ⚙️ Define plot parameters ----
+
 font_add_google("Open Sans")
 showtext::showtext_auto()
+
+theme_set(theme_bw())
+
+# 📊 Plot ----
+
+p <- penguins |> 
+  ggplot(aes(x = flipper_length_mm, y = bill_length_mm,
+             color = species, fill = species)) +
+  geom_point(shape = 21, size = 3, alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_color_manual(
+    values = c("Adelie" = "darkorange",
+               "Chinstrap" = "purple",
+               "Gentoo" = "cyan4")
+  ) +
+  facet_wrap(~species) +
+  labs(x = "Flipper length (mm)",
+       y = "Bill depth (mm)") +
+  theme(legend.position = "none",
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(colour = "white", linetype = "dotted",
+                                        linewidth = 0.2),
+        panel.background = element_rect(fill = "black", colour = "black"),
+        plot.background = element_rect(fill = "black", colour = "black"),
+        strip.background = element_rect(colour="white", fill="black", 
+                                        linewidth = 1.5, linetype = "solid"),
+        strip.text = element_text(family = "Open Sans", colour = "white", size = 50))
+
+ggsave("2026/figs/30DCC_2026_04.png", p, dpi = 320, width = 12, height = 6) 
 
 # 📄 Data ----
 
