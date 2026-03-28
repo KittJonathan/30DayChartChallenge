@@ -9,6 +9,12 @@
 # 📦 Packages ----
 
 library(tidyverse)
+library(showtext)
+
+# ⚙️ Define plot parameters ----
+
+font_add_google("Open Sans")
+showtext::showtext_auto()
 
 # 📄 Data ----
 
