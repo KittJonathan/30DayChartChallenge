@@ -9,6 +9,24 @@
 library(tidyverse)
 library(palmerpenguins)
 
+# 📊 Plot ----
+
+p <- penguins |> 
+  mutate(bill_ratio = bill_length_mm / bill_depth_mm) |> 
+  arrange(desc(bill_ratio)) |> 
+  drop_na(bill_ratio) |> 
+  rowid_to_column() |> 
+  select(rowid, species, bill_ratio) |> 
+  ggplot() +
+  geom_segment(aes(x = rowid, xend = rowid, 
+                   y = 0, yend = bill_ratio,
+                   color = species),
+               linewidth = 0.3) +
+  coord_polar(theta = "x", start = 0)
+
+ggsave("2026/figs/30DCC_2026_08.png", p, dpi = 320, width = 12, height = 6)
+  
+
 # 📄 Data ----
 
 # https://public.opendatasoft.com/explore/assets/donnees-synop-essentielles-omm/
