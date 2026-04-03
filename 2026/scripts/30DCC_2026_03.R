@@ -19,7 +19,7 @@ library(ggtext)
 font_add_google("Open Sans")
 showtext::showtext_auto()
 
-# Testing {marimekko} ----
+# 📊 Plot ----
 
 p <- ggplot(penguins) +
   geom_marimekko(aes(fill = factor(species)),
@@ -46,5 +46,7 @@ p <- ggplot(penguins) +
         plot.title = element_text(family = "Open Sans", face = "bold", color = "white", size = 80, hjust = 0.5, margin = margin(t = 15, b = 10)),
         plot.subtitle = element_markdown(family = "Open Sans", color = "white", size = 60, hjust = 0.5, margin = margin(b = 30)),
         plot.caption = element_text(family = "Open Sans", color = "white", size = 40, hjust = 0.5, margin = margin(t = 25, b = 15)))
+
+# 💾 Save plot ----
 
 ggsave("2026/figs/30DCC_2026_03.png", p, dpi = 320, width = 12, height = 6)
