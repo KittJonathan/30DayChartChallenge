@@ -122,6 +122,6 @@ p <- ggplot(rsf_index,
         strip.background = element_rect(colour="black", fill="black"),
         strip.text = element_text(family = "Open Sans", colour = "white", size = 50))
 
+# 💾 Save plot ----
 
 ggsave("2026/figs/30DCC_2026_06.png", p, dpi = 320, width = 12, height = 6)
-
