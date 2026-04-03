@@ -61,7 +61,7 @@ plot_rolls <- function(n_dice, n_rolls, seed = 42) {
     labs(x = "Sum of dice", y = "Probability",
          title = paste0("Simulating ", n_rolls, " throws of ", n_dice, " dice"),
          subtitle = "<span style = 'color:#ffbbff;'>Simulated values</span> versus
-       <span style = 'color:#a020f0;'>theoretical values</span>",
+       <span style = 'color:#a020f0;'>expected values</span>",
          caption = "30DayChartChallenge 2026 | Comparisons | Day 05 - Experimental") +
     theme_bw() +
     theme(panel.grid.minor = element_blank(),
@@ -88,7 +88,9 @@ plot_rolls <- function(n_dice, n_rolls, seed = 42) {
 
 # 📊 Plot ----
 
-p <- plot_rolls(n_dice = 5, n_rolls = 10000, seed = 42)
+p <- plot_rolls(n_dice = 3, n_rolls = 1000, seed = 42)
+
+# 💾 Save plot ----
 
 ggsave("2026/figs/30DCC_2026_05.png", p, dpi = 320, width = 12, height = 6)
 
